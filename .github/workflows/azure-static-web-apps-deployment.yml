@@ -27,9 +27,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/" # Site root
+          app_location: "." # Repository root
           api_location: "" # No API
-          output_location: "/" # No build step, deploy as-is
+          output_location: "." # No build step, deploy as-is
           skip_app_build: true # Static HTML site, no build needed
 
   close_pull_request_job:

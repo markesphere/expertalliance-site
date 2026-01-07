@@ -92,8 +92,9 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  padding-top: var(--space-3);
-  padding-bottom: var(--space-3);
+  height: 100px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .brand {
