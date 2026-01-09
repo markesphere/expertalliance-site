@@ -103,6 +103,7 @@ button:focus-visible {
   gap: var(--space-2);
   min-width: 0;
   height: 100%;
+  padding-top: 0.25rem;
 }
 
 .brand__logo {
@@ -124,6 +125,7 @@ button:focus-visible {
   gap: var(--space-3);
   flex-wrap: wrap;
   justify-content: flex-end;
+  padding-top: 0.5rem;
 }
 
 .nav a:not(.button) {
@@ -139,8 +141,6 @@ button:focus-visible {
   display: grid;
   grid-template-columns: 1.25fr 0.75fr;
   gap: var(--space-5);
-  padding-top: var(--space-5);
-  padding-bottom: var(--space-5);
 }
 
 .hero__lead {
@@ -274,11 +274,50 @@ button:focus-visible {
 }
 
 @media (max-width: 900px) {
+  .nav {
+    column-gap: var(--space-3);
+    row-gap: 0.15rem;
+  }
+
   .hero {
     grid-template-columns: 1fr;
   }
 
   .grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile landscape mode optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .nav {
+    column-gap: 0.5rem;
+    row-gap: 0.1rem;
+  }
+
+  .nav a:not(.button) {
+    line-height: 1.2;
+  }
+
+  .button {
+    line-height: 1.2;
+  }
+}
+
+/* Extra small landscape viewports */
+@media (max-height: 400px) and (orientation: landscape) {
+  .header {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .nav {
+    column-gap: 0.4rem;
+    row-gap: 0;
   }
 }
