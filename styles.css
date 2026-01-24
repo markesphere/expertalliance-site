@@ -321,3 +321,257 @@ button:focus-visible {
     row-gap: 0;
   }
 }
+
+/* Specialty sections and cards */
+.section--highlight {
+  background: color-mix(in oklab, Canvas 96%, var(--brand-blue) 4%);
+  margin-left: calc(-1 * var(--space-4));
+  margin-right: calc(-1 * var(--space-4));
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+.section__lead {
+  font-size: 1.125rem;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-4);
+  opacity: 0.9;
+}
+
+.section__note {
+  margin-top: var(--space-3);
+  opacity: 0.85;
+  font-style: italic;
+}
+
+.section--cta {
+  text-align: center;
+}
+
+.section--cta h2 {
+  margin-bottom: var(--space-2);
+}
+
+.section--cta .cta {
+  justify-content: center;
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.specialties-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.specialty-card {
+  border: 2px solid color-mix(in oklab, var(--brand-blue) 30%, transparent);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  background: Canvas;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.specialty-card--featured {
+  border-color: var(--brand-blue);
+  background: color-mix(in oklab, Canvas 98%, var(--brand-blue) 2%);
+}
+
+.specialty-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.specialty-card__header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--brand-blue);
+}
+
+.specialty-card__badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: color-mix(in oklab, var(--brand-blue) 15%, transparent);
+  color: var(--brand-blue);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.specialty-card__features {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.specialty-card__features li::before {
+  content: "✓ ";
+  color: var(--brand-blue);
+  font-weight: bold;
+  margin-right: var(--space-1);
+}
+
+.specialty-card__actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: var(--border);
+}
+
+.specialties-cta {
+  text-align: center;
+  padding: var(--space-5);
+  background: color-mix(in oklab, Canvas 92%, CanvasText 8%);
+  border-radius: var(--radius);
+  margin-top: var(--space-4);
+}
+
+.specialties-cta h3 {
+  margin-bottom: var(--space-2);
+}
+
+.specialties-cta p {
+  margin-bottom: var(--space-3);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Specialty hero pages */
+.specialty-hero {
+  position: relative;
+}
+
+.specialty-hero__badge {
+  margin-bottom: var(--space-3);
+}
+
+.specialty-hero__badge span {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  background: color-mix(in oklab, var(--brand-blue) 20%, transparent);
+  color: var(--brand-blue);
+  font-size: 0.875rem;
+  font-weight: 650;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--brand-blue) 40%, transparent);
+}
+
+/* Coverage grid for feature lists */
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.coverage-category {
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  background: color-mix(in oklab, Canvas 98%, CanvasText 2%);
+}
+
+.coverage-category h3 {
+  margin-top: 0;
+  margin-bottom: var(--space-3);
+  color: var(--brand-blue);
+  font-size: 1.125rem;
+}
+
+.coverage-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.coverage-category li {
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.coverage-category li::before {
+  content: "•";
+  position: absolute;
+  left: 0.5rem;
+  color: var(--brand-blue);
+  font-weight: bold;
+}
+
+/* Grid variations */
+.grid--two-col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Clickable cards */
+.card--clickable {
+  position: relative;
+  transition: border-color 0.2s, background-color 0.2s;
+  cursor: pointer;
+}
+
+.card--clickable:hover {
+  border-color: var(--brand-blue);
+  background: color-mix(in oklab, Canvas 98%, var(--brand-blue) 2%);
+}
+
+.card__link {
+  display: inline-block;
+  margin-top: var(--space-2);
+  color: var(--brand-blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.card__link:hover {
+  text-decoration: underline;
+}
+
+/* Button variations */
+.button--secondary {
+  background: color-mix(in oklab, Canvas 92%, CanvasText 8%);
+  color: CanvasText;
+  border-color: var(--border);
+}
+
+.button--large {
+  padding: 0.85rem 1.5rem;
+  font-size: 1.0625rem;
+}
+
+/* Responsive adjustments for specialty pages */
+@media (max-width: 900px) {
+  .specialties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coverage-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid--two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .specialty-card__actions {
+    flex-direction: column;
+  }
+
+  .specialty-card__actions .button {
+    width: 100%;
+  }
+}
