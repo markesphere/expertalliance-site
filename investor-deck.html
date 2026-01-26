@@ -28,13 +28,14 @@
             height: 100%;
             display: none;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 4rem;
+            padding: 4rem 3rem 6rem 3rem;
             background: white;
             position: absolute;
             top: 0;
             left: 0;
+            overflow-y: auto;
         }
 
         .slide.active {
@@ -47,63 +48,63 @@
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             color: #2c3e50;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             font-weight: 700;
         }
 
         h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #667eea;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-
-        h3 {
-            font-size: 1.8rem;
-            color: #34495e;
             margin-bottom: 1rem;
             font-weight: 600;
         }
 
+        h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
         p {
-            font-size: 1.3rem;
-            line-height: 1.8;
+            font-size: 1.1rem;
+            line-height: 1.6;
             color: #555;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: #7f8c8d;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         .tagline {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             color: #764ba2;
             font-weight: 500;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
         }
 
         ul {
             list-style: none;
-            margin: 2rem 0;
+            margin: 1rem 0;
         }
 
         li {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             color: #444;
-            margin-bottom: 1.2rem;
-            padding-left: 2rem;
+            margin-bottom: 0.75rem;
+            padding-left: 1.75rem;
             position: relative;
         }
 
         li:before {
             content: "▸";
             color: #667eea;
-            font-size: 1.6rem;
+            font-size: 1.3rem;
             position: absolute;
             left: 0;
         }
@@ -119,9 +120,9 @@
             display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 8px;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin: 0.5rem;
         }
@@ -129,13 +130,13 @@
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
+            gap: 1.25rem;
+            margin: 1.25rem 0;
         }
 
         .card {
             background: #f8f9fa;
-            padding: 2rem;
+            padding: 1.25rem;
             border-radius: 12px;
             border-left: 4px solid #667eea;
         }
@@ -149,32 +150,32 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
-            margin: 2rem 0;
+            gap: 0.75rem;
+            margin: 1rem 0;
         }
 
         .pin-row {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             align-items: center;
         }
 
         .pin {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1.5rem 2rem;
+            padding: 1rem 1.5rem;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 600;
-            min-width: 200px;
+            min-width: 160px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .pin.primary {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            font-size: 1.4rem;
-            padding: 2rem 3rem;
+            font-size: 1.1rem;
+            padding: 1.25rem 2rem;
             animation: pulse 2s infinite;
         }
 
@@ -230,28 +231,48 @@
         }
 
         .logo {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            height: 50px;
+            height: 35px;
             width: auto;
-            z-index: 1000;
+            opacity: 0.9;
+            display: none;
+        }
+        
+        .logo.visible {
+            display: inline-block;
         }
         
         .logo img {
             height: 100%;
+            width: auto;
+            vertical-align: middle;
+        }
+        
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            width: 100%;
+        }
+        
+        .title-logo {
+            margin-bottom: 1.5rem;
+        }
+        
+        .title-logo img {
+            height: 100px;
             width: auto;
         }
 
         .section-title {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 0.5rem 1.5rem;
+            padding: 0.4rem 1.2rem;
             border-radius: 50px;
             display: inline-block;
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -260,7 +281,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 2rem 0;
+            margin: 1rem 0;
             position: relative;
         }
 
@@ -278,7 +299,7 @@
         .timeline-item {
             background: white;
             border: 3px solid #667eea;
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: 12px;
             width: 30%;
             z-index: 1;
@@ -287,52 +308,52 @@
 
         .timeline-item h4 {
             color: #667eea;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
         }
 
         .timeline-item p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin: 0;
         }
 
         .team-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
+            gap: 1.25rem;
+            margin: 1.25rem 0;
         }
 
         .team-member {
             text-align: center;
-            padding: 1.5rem;
+            padding: 1rem;
             background: #f8f9fa;
             border-radius: 12px;
         }
 
         .team-member h4 {
             color: #667eea;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
         }
 
         .team-member p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #666;
         }
 
         .competitive-grid {
             display: grid;
             grid-template-columns: 1fr 2fr 2fr;
-            gap: 1rem;
-            margin: 2rem 0;
+            gap: 0.75rem;
+            margin: 1.25rem 0;
         }
 
         .competitive-cell {
-            padding: 1rem;
+            padding: 0.75rem;
             background: #f8f9fa;
             border-radius: 8px;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
 
         .competitive-cell.header {
@@ -348,22 +369,22 @@
 
         .financial-table {
             width: 100%;
-            margin: 2rem 0;
+            margin: 1.25rem 0;
             border-collapse: collapse;
         }
 
         .financial-table th {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1rem;
+            padding: 0.75rem;
             text-align: left;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .financial-table td {
-            padding: 1rem;
+            padding: 0.75rem;
             border-bottom: 1px solid #ddd;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
 
         .financial-table tr:nth-child(even) {
@@ -383,13 +404,13 @@
 </head>
 <body>
     <div class="presentation">
-        <div class="logo">
-            <img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI">
-        </div>
         
         <!-- Slide 1: Title -->
         <div class="slide active">
             <div class="slide-content" style="text-align: center;">
+                <div class="title-logo">
+                    <img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI">
+                </div>
                 <h1>Expert Alliance AI</h1>
                 <p class="tagline">Transforming Corporate Procurement with AI-Powered RFP Automation</p>
                 <div class="metric">$1.5 Trillion Market</div>
@@ -400,7 +421,10 @@
         <!-- Slide 2: The Problem -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">The Problem</span>
+                <div class="slide-header">
+                    <span class="section-title">The Problem</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>Corporate Procurement is Broken</h2>
                 <div class="grid">
                     <div class="card">
@@ -431,7 +455,10 @@
         <!-- Slide 3: The Solution -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">The Solution</span>
+                <div class="slide-header">
+                    <span class="section-title">The Solution</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>RFPEZ.AI: Multi-Agent Procurement Platform</h2>
                 <p>Specialized AI agent teams that automate the entire competitive procurement lifecycle</p>
                 <div class="grid">
@@ -458,7 +485,10 @@
         <!-- Slide 4: Market Opportunity -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">Market Opportunity</span>
+                <div class="slide-header">
+                    <span class="section-title">Market Opportunity</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>Massive TAM in Corporate Travel Alone</h2>
                 <div style="text-align: center; margin: 3rem 0;">
                     <div class="metric">$1.5T</div>
@@ -490,7 +520,10 @@
         <!-- Slide 5: Go-to-Market Strategy -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">Go-to-Market</span>
+                <div class="slide-header">
+                    <span class="section-title">Go-to-Market</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>Bowling Pin Strategy</h2>
                 <div class="bowling-pin">
                     <div class="pin-row">
@@ -518,7 +551,10 @@
         <!-- Slide 6: Phase 1 Strategy -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">Phase 1</span>
+                <div class="slide-header">
+                    <span class="section-title">Phase 1</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>TMC Procurement Dominance</h2>
                 <div class="timeline">
                     <div class="timeline-item">
@@ -549,7 +585,10 @@
         <!-- Slide 7: Competitive Advantage -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">Competitive Advantage</span>
+                <div class="slide-header">
+                    <span class="section-title">Competitive Advantage</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>Why We Win</h2>
                 <div class="competitive-grid">
                     <div class="competitive-cell header">Feature</div>
@@ -582,7 +621,10 @@
         <!-- Slide 8: Technology Moat -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">Technology</span>
+                <div class="slide-header">
+                    <span class="section-title">Technology</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>Proprietary Multi-Agent Architecture</h2>
                 <div class="grid">
                     <div class="card">
@@ -613,7 +655,10 @@
         <!-- Slide 9: Business Model -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">Business Model</span>
+                <div class="slide-header">
+                    <span class="section-title">Business Model</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>SaaS + Transaction Fees</h2>
                 <div class="grid">
                     <div class="card">
@@ -665,7 +710,10 @@
         <!-- Slide 10: Traction -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">Traction</span>
+                <div class="slide-header">
+                    <span class="section-title">Traction</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>Early Validation & Momentum</h2>
                 <div class="grid">
                     <div class="card">
@@ -697,7 +745,10 @@
         <!-- Slide 11: Team -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">Team</span>
+                <div class="slide-header">
+                    <span class="section-title">Team</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>Built by Industry Veterans</h2>
                 <div class="team-grid">
                     <div class="team-member">
@@ -730,7 +781,10 @@
         <!-- Slide 12: Fundraising -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">The Ask</span>
+                <div class="slide-header">
+                    <span class="section-title">The Ask</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>Seed Round: $2M</h2>
                 <div class="grid">
                     <div class="card">
@@ -761,7 +815,10 @@
         <!-- Slide 13: Vision -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">Vision</span>
+                <div class="slide-header">
+                    <span class="section-title">Vision</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>The Future of B2B Procurement</h2>
                 <p style="font-size: 1.5rem; text-align: center; margin: 2rem 0;">
                     "Every complex B2B purchase assisted by specialized AI agents"
@@ -790,7 +847,10 @@
         <!-- Slide 14: Why Now -->
         <div class="slide">
             <div class="slide-content">
-                <span class="section-title">Why Now</span>
+                <div class="slide-header">
+                    <span class="section-title">Why Now</span>
+                    <div class="logo visible"><img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI"></div>
+                </div>
                 <h2>Perfect Timing for AI-Powered Procurement</h2>
                 <div class="grid">
                     <div class="card">
@@ -821,9 +881,11 @@
         <!-- Slide 15: Contact -->
         <div class="slide">
             <div class="slide-content" style="text-align: center;">
+                <div class="title-logo">
+                    <img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI">
+                </div>
                 <h1>Let's Transform Procurement Together</h1>
                 <div style="margin: 4rem 0;">
-                    <h3 style="color: #667eea; margin-bottom: 2rem;">Expert Alliance AI</h3>
                     <p style="font-size: 1.4rem;">Mark Skiba, CEO & Founder</p>
                     <p style="font-size: 1.2rem; color: #7f8c8d;">mskiba@expertalliance.ai</p>
                     <p style="font-size: 1.2rem; color: #7f8c8d; margin-top: 2rem;">Oceanside, California</p>
