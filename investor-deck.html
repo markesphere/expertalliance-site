@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Alliance AI - Investor Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #34495e;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            color: #764ba2;
+            font-weight: 500;
+            margin-bottom: 3rem;
+        }
+
+        ul {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        li {
+            font-size: 1.4rem;
+            color: #444;
+            margin-bottom: 1.2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        li:before {
+            content: "▸";
+            color: #667eea;
+            font-size: 1.6rem;
+            position: absolute;
+            left: 0;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .metric {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .bowling-pin {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .pin-row {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .pin {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .pin.primary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            font-size: 1.4rem;
+            padding: 2rem 3rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: #667eea;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            color: #667eea;
+            font-size: 1.2rem;
+            font-weight: 600;
+            z-index: 1000;
+        }
+
+        .logo {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            height: 50px;
+            width: auto;
+            z-index: 1000;
+        }
+        
+        .logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .timeline:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            background: white;
+            border: 3px solid #667eea;
+            padding: 1.5rem;
+            border-radius: 12px;
+            width: 30%;
+            z-index: 1;
+            position: relative;
+        }
+
+        .timeline-item h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .team-member h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .competitive-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 2fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .competitive-cell {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+
+        .competitive-cell.header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .competitive-cell.us {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+
+        .financial-table {
+            width: 100%;
+            margin: 2rem 0;
+            border-collapse: collapse;
+        }
+
+        .financial-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-size: 1.2rem;
+        }
+
+        .financial-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1rem;
+        }
+
+        .financial-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            p, li { font-size: 1rem; }
+            .grid { grid-template-columns: 1fr; }
+            .timeline { flex-direction: column; }
+            .timeline-item { width: 100%; margin-bottom: 1rem; }
+            .team-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <div class="logo">
+            <img src="ExpertAllianceAI-logo.svg" alt="Expert Alliance AI">
+        </div>
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-content" style="text-align: center;">
+                <h1>Expert Alliance AI</h1>
+                <p class="tagline">Transforming Corporate Procurement with AI-Powered RFP Automation</p>
+                <div class="metric">$1.5 Trillion Market</div>
+                <p class="subtitle" style="margin-top: 3rem;">Oceanside, California • 2026</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">The Problem</span>
+                <h2>Corporate Procurement is Broken</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>For Buyers</h3>
+                        <ul>
+                            <li>Manual RFP creation takes weeks</li>
+                            <li>Inconsistent requirements gathering</li>
+                            <li>Poor vendor comparison capabilities</li>
+                            <li>Compliance and audit nightmares</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>For Vendors</h3>
+                        <ul>
+                            <li>Generic responses don't win</li>
+                            <li>Time-intensive proposal writing</li>
+                            <li>Difficulty understanding requirements</li>
+                            <li>Low win rates waste resources</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="highlight" style="font-size: 1.6rem; text-align: center; margin-top: 2rem;">
+                    Result: $100B+ annually wasted on inefficient procurement processes
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Solution -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">The Solution</span>
+                <h2>RFPEZ.AI: Multi-Agent Procurement Platform</h2>
+                <p>Specialized AI agent teams that automate the entire competitive procurement lifecycle</p>
+                <div class="grid">
+                    <div class="card">
+                        <h3>🎯 RFP Design Agent</h3>
+                        <p>Intelligently structures requirements, creates comprehensive RFP documents with industry best practices</p>
+                    </div>
+                    <div class="card">
+                        <h3>💡 Solutions Agent</h3>
+                        <p>Analyzes RFPs, generates winning proposals, matches vendor capabilities to requirements</p>
+                    </div>
+                    <div class="card">
+                        <h3>🔍 Audit Agent</h3>
+                        <p>Ensures compliance, validates requirements, maintains procurement governance</p>
+                    </div>
+                    <div class="card">
+                        <h3>💬 Negotiation Agent</h3>
+                        <p>Optimizes terms, analyzes proposals, facilitates vendor negotiations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Market Opportunity -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">Market Opportunity</span>
+                <h2>Massive TAM in Corporate Travel Alone</h2>
+                <div style="text-align: center; margin: 3rem 0;">
+                    <div class="metric">$1.5T</div>
+                    <p class="subtitle">Annual Corporate Travel Spend</p>
+                </div>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Primary Target: TMC Procurement</h3>
+                        <ul>
+                            <li><strong>$40B+</strong> TMC services market</li>
+                            <li><strong>5,000+</strong> corporate buyers annually</li>
+                            <li><strong>500+</strong> TMC providers competing</li>
+                            <li><strong>3-5 year</strong> contract cycles</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Adjacent Verticals (Bowling Pin)</h3>
+                        <ul>
+                            <li>Meeting & Event Management</li>
+                            <li>Ground Transportation</li>
+                            <li>Hotel Programs</li>
+                            <li>Corporate Services</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Go-to-Market Strategy -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">Go-to-Market</span>
+                <h2>Bowling Pin Strategy</h2>
+                <div class="bowling-pin">
+                    <div class="pin-row">
+                        <div class="pin primary">Corporate TMC Buyers</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="pin-row">
+                        <div class="pin">TMC Responders</div>
+                        <div class="pin">Procurement Consultants</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="pin-row">
+                        <div class="pin">Meeting/Event</div>
+                        <div class="pin">Ground Transport</div>
+                        <div class="pin">Hotel Programs</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="pin-row">
+                        <div class="pin">General B2B Procurement</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Phase 1 Strategy -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">Phase 1</span>
+                <h2>TMC Procurement Dominance</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Q1-Q2 2026</h4>
+                        <p><strong>Buyer Side:</strong> Launch with corporate buyers and consultants creating TMC RFPs</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Q3-Q4 2026</h4>
+                        <p><strong>Vendor Side:</strong> Onboard TMCs responding to RFPs with AI-powered proposals</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>2027</h4>
+                        <p><strong>Network Effect:</strong> Marketplace connecting buyers and TMC vendors at scale</p>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>Why TMC First?</h3>
+                    <ul>
+                        <li><strong>High-value contracts:</strong> $500K-$5M+ annually per client</li>
+                        <li><strong>Predictable cycles:</strong> RFPs every 3-5 years</li>
+                        <li><strong>Complex requirements:</strong> High value from AI automation</li>
+                        <li><strong>Network effects:</strong> Both sides benefit from platform adoption</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Competitive Advantage -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">Competitive Advantage</span>
+                <h2>Why We Win</h2>
+                <div class="competitive-grid">
+                    <div class="competitive-cell header">Feature</div>
+                    <div class="competitive-cell header">Traditional RFP Tools</div>
+                    <div class="competitive-cell header">RFPEZ.AI</div>
+                    
+                    <div class="competitive-cell"><strong>AI-Powered</strong></div>
+                    <div class="competitive-cell">Template-based only</div>
+                    <div class="competitive-cell us">✓ Multi-agent intelligence</div>
+                    
+                    <div class="competitive-cell"><strong>Both Sides</strong></div>
+                    <div class="competitive-cell">Buyer OR vendor focused</div>
+                    <div class="competitive-cell us">✓ Two-sided marketplace</div>
+                    
+                    <div class="competitive-cell"><strong>Specialization</strong></div>
+                    <div class="competitive-cell">Generic procurement</div>
+                    <div class="competitive-cell us">✓ Vertical-specific agents</div>
+                    
+                    <div class="competitive-cell"><strong>Learning</strong></div>
+                    <div class="competitive-cell">Static templates</div>
+                    <div class="competitive-cell us">✓ Continuous improvement</div>
+                    
+                    <div class="competitive-cell"><strong>Integration</strong></div>
+                    <div class="competitive-cell">Limited APIs</div>
+                    <div class="competitive-cell us">✓ Full ecosystem (MCP protocol)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Technology Moat -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">Technology</span>
+                <h2>Proprietary Multi-Agent Architecture</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Agent Framework</h3>
+                        <ul>
+                            <li>Specialized agent teams per vertical</li>
+                            <li>Context-aware collaboration</li>
+                            <li>Claude 3.5 Sonnet + custom models</li>
+                            <li>Model Context Protocol (MCP) integration</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Knowledge Graph</h3>
+                        <ul>
+                            <li>Industry-specific requirements library</li>
+                            <li>Best practice patterns</li>
+                            <li>Historical RFP analysis</li>
+                            <li>Vendor capability matching</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="highlight" style="text-align: center; margin-top: 2rem; font-size: 1.5rem;">
+                    Data moat grows with every RFP → Network effects → Sustainable competitive advantage
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Business Model -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">Business Model</span>
+                <h2>SaaS + Transaction Fees</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Subscription Tiers</h3>
+                        <ul>
+                            <li><strong>Free:</strong> Basic RFP creation</li>
+                            <li><strong>Professional ($499/mo):</strong> Advanced agents + analytics</li>
+                            <li><strong>Enterprise ($2,500/mo):</strong> Unlimited + white-label</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Transaction Revenue</h3>
+                        <ul>
+                            <li><strong>Success fee:</strong> 1-2% of awarded contract value</li>
+                            <li><strong>Vendor credits:</strong> Premium proposal features</li>
+                            <li><strong>Marketplace commissions:</strong> Introduction fees</li>
+                        </ul>
+                    </div>
+                </div>
+                <table class="financial-table" style="margin-top: 2rem;">
+                    <tr>
+                        <th>Revenue Stream</th>
+                        <th>Year 1</th>
+                        <th>Year 3</th>
+                        <th>Year 5</th>
+                    </tr>
+                    <tr>
+                        <td>Subscriptions</td>
+                        <td>$500K</td>
+                        <td>$5M</td>
+                        <td>$20M</td>
+                    </tr>
+                    <tr>
+                        <td>Transaction Fees</td>
+                        <td>$200K</td>
+                        <td>$8M</td>
+                        <td>$40M</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total ARR</strong></td>
+                        <td><strong>$700K</strong></td>
+                        <td><strong>$13M</strong></td>
+                        <td><strong>$60M</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 10: Traction -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">Traction</span>
+                <h2>Early Validation & Momentum</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Product Status</h3>
+                        <ul>
+                            <li>✓ Multi-agent platform live</li>
+                            <li>✓ TMC RFP specialization complete</li>
+                            <li>✓ Both buyer & vendor workflows</li>
+                            <li>✓ Production-ready infrastructure</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Market Validation</h3>
+                        <ul>
+                            <li>Pilot customers in onboarding</li>
+                            <li>Enterprise interest pipeline</li>
+                            <li>TMC partner discussions</li>
+                            <li>Consultant partnerships forming</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <div class="metric">200+</div>
+                    <p class="subtitle">Automated test RFPs processed</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Team -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">Team</span>
+                <h2>Built by Industry Veterans</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <h4>CEO & Founder</h4>
+                        <p><strong>Mark Skiba</strong></p>
+                        <p>20+ years in corporate travel technology and procurement systems</p>
+                    </div>
+                    <div class="team-member">
+                        <h4>Lead AI Architect</h4>
+                        <p><strong>Mark Skiba</strong></p>
+                        <p>Multi-agent systems expert, Claude/GPT integration specialist</p>
+                    </div>
+                    <div class="team-member">
+                        <h4>VP Sales</h4>
+                        <p><strong>[Open Role]</strong></p>
+                        <p>TMC/corporate travel relationships, enterprise SaaS experience</p>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>Advisory Board</h3>
+                    <ul>
+                        <li>Former procurement SaaS executives</li>
+                        <li>Corporate travel managers from Fortune 500s</li>
+                        <li>Procurement consultants with 100+ RFP experience</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Fundraising -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">The Ask</span>
+                <h2>Seed Round: $2M</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Use of Funds</h3>
+                        <ul>
+                            <li><strong>$800K</strong> - Engineering (2 senior engineers)</li>
+                            <li><strong>$600K</strong> - Sales & Marketing (VP + team)</li>
+                            <li><strong>$400K</strong> - Product Development</li>
+                            <li><strong>$200K</strong> - Operations & Legal</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>18-Month Milestones</h3>
+                        <ul>
+                            <li><strong>50+</strong> paying corporate customers</li>
+                            <li><strong>100+</strong> TMC vendor accounts</li>
+                            <li><strong>$1.5M</strong> ARR achieved</li>
+                            <li><strong>Series A</strong> ready (Q3 2027)</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="highlight" style="text-align: center; margin-top: 2rem; font-size: 1.6rem;">
+                    Valuation: $10M pre-money
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Vision -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">Vision</span>
+                <h2>The Future of B2B Procurement</h2>
+                <p style="font-size: 1.5rem; text-align: center; margin: 2rem 0;">
+                    "Every complex B2B purchase assisted by specialized AI agents"
+                </p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>2026-2027</h4>
+                        <p><strong>Dominate TMC:</strong> Become the standard for travel procurement</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>2028-2029</h4>
+                        <p><strong>Expand Verticals:</strong> Events, transport, hospitality procurement</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>2030+</h4>
+                        <p><strong>Platform Play:</strong> Universal B2B procurement OS</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <div class="metric">$100B+</div>
+                    <p class="subtitle">Total addressable market across all verticals</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Why Now -->
+        <div class="slide">
+            <div class="slide-content">
+                <span class="section-title">Why Now</span>
+                <h2>Perfect Timing for AI-Powered Procurement</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Technology Enablers</h3>
+                        <ul>
+                            <li>Latest Claude GPT advanced reasoning</li>
+                            <li>Multi-agent frameworks mature</li>
+                            <li>MCP protocol for tool integration</li>
+                            <li>Enterprise AI adoption accelerating</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Market Conditions</h3>
+                        <ul>
+                            <li>Corporate cost pressure post-pandemic</li>
+                            <li>Travel budgets under scrutiny</li>
+                            <li>Digital transformation mandates</li>
+                            <li>Procurement efficiency focus</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="highlight" style="text-align: center; margin-top: 2rem; font-size: 1.5rem;">
+                    First-mover advantage in vertical-specific AI procurement agents
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Contact -->
+        <div class="slide">
+            <div class="slide-content" style="text-align: center;">
+                <h1>Let's Transform Procurement Together</h1>
+                <div style="margin: 4rem 0;">
+                    <h3 style="color: #667eea; margin-bottom: 2rem;">Expert Alliance AI</h3>
+                    <p style="font-size: 1.4rem;">Mark Skiba, CEO & Founder</p>
+                    <p style="font-size: 1.2rem; color: #7f8c8d;">mskiba@expertalliance.ai</p>
+                    <p style="font-size: 1.2rem; color: #7f8c8d; margin-top: 2rem;">Oceanside, California</p>
+                </div>
+                <div style="margin-top: 4rem;">
+                    <div class="metric" style="font-size: 1.5rem;">RFPEZ.AI</div>
+                    <p class="subtitle">The Multi-Agent RFP Platform</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">15</span>
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">← Previous</button>
+            <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Update button states
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'Home') showSlide(0);
+            if (e.key === 'End') showSlide(totalSlides - 1);
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
