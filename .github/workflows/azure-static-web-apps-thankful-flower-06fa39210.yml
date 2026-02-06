@@ -1,13 +1,8 @@
-name: Azure Static Web Apps CI/CD
+name: ExpertAlliance.AI Deploy
 
+# Workflow disabled - using azure-static-web-apps-deployment.yml instead
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches:
-      - master
+  workflow_dispatch: # Manual trigger only
 
 jobs:
   build_and_deploy_job:
@@ -28,9 +23,10 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "C:/Program Files/Git/" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "C:/Program Files/Git/" # Built app content directory - optional
+          app_location: "." # Repository root (static HTML files)
+          api_location: "" # No API
+          output_location: "." # No build step, deploy as-is
+          skip_app_build: true # Static HTML site, no build needed
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
